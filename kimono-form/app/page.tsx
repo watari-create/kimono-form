@@ -88,8 +88,7 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.logo}><LogoSvg /></div>
         <div>
-          <h1 className={styles.title}>お申込みフォーム（着物）</h1>
-          <p className={styles.subtitle}>のぞき梅 / 侘び数寄道</p>
+          <h1 className={styles.title}>茶道宗徧流不審庵 頒布着物申し込み</h1>
         </div>
       </header>
 
