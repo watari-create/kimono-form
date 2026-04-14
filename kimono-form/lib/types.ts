@@ -27,14 +27,47 @@ export type KimonoFormData = {
   note: string
 }
 
-export const PRODUCTS = [
-  '袷きもの のぞき梅（正絹）',
-  '袷きもの のぞき梅（合繊）',
-  '名古屋帯 向かい蝶（灰桜）',
-  '名古屋帯 向かい蝶（薄藍）',
-  '夏きもの 蝶の舞（正絹）',
-  '夏きもの 蝶の舞（合繊）',
-  '夏帯 月と萩',
+export type ProductItem = {
+  name: string
+  price: string
+}
+
+export type ProductSection = {
+  title: string
+  items: ProductItem[]
+}
+
+export const PRODUCT_SECTIONS: ProductSection[] = [
+  {
+    title: '夏物（絽）蝶の舞　※仕立て・加工込',
+    items: [
+      { name: '着物　正絹', price: '¥440,000' },
+      { name: '着物　合繊', price: '¥165,000' },
+      { name: '夏帯　萩と月', price: '¥198,000' },
+      { name: 'セット（正絹）', price: '¥603,000' },
+      { name: 'セット（合繊）', price: '¥338,000' },
+    ],
+  },
+  {
+    title: '冬物（袷）のぞき梅　※仕立て・加工込',
+    items: [
+      { name: '着物　正絹', price: '¥396,000' },
+      { name: '着物　合繊', price: '¥143,000' },
+      { name: '名古屋帯　むかい蝶（ピンク）', price: '¥242,000' },
+      { name: '名古屋帯　むかい蝶（直門用ブルー）', price: '¥242,000' },
+      { name: 'セット（正絹）', price: '¥593,000' },
+      { name: 'セット（合繊）', price: '¥358,000' },
+    ],
+  },
+  {
+    title: '反物のみ（仕立て・加工なし）',
+    items: [
+      { name: '蝶の舞（夏きもの）反物　正絹', price: '' },
+      { name: '蝶の舞（夏きもの）反物　合繊', price: '' },
+      { name: 'のぞき梅（袷きもの）反物　正絹', price: '' },
+      { name: 'のぞき梅（袷きもの）反物　合繊', price: '' },
+    ],
+  },
 ]
 
 export const SUNPO_FIELDS: { key: keyof Pick<KimonoFormData, 'shintake'|'sodake'|'yuki'|'sodahaba'|'sodatsuke'|'maehaba'|'ushirohaba'|'tsumashita'|'kurikoshi'>; label: string; shakuOnly?: boolean }[] = [
@@ -42,8 +75,8 @@ export const SUNPO_FIELDS: { key: keyof Pick<KimonoFormData, 'shintake'|'sodake'
   { key: 'sodake',      label: '袖丈' },
   { key: 'yuki',        label: '裄' },
   { key: 'sodahaba',    label: '袖巾' },
-  { key: 'sodatsuke',   label: '袖付',   shakuOnly: true },
-  { key: 'maehaba',     label: '前巾',   shakuOnly: true },
+  { key: 'sodatsuke',   label: '袖付',     shakuOnly: true },
+  { key: 'maehaba',     label: '前巾',     shakuOnly: true },
   { key: 'ushirohaba',  label: '後巾' },
   { key: 'tsumashita',  label: '褄下' },
   { key: 'kurikoshi',   label: 'くりこし', shakuOnly: true },
