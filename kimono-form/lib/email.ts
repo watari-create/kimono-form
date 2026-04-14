@@ -12,9 +12,9 @@ export async function sendConfirmationEmail(data: KimonoFormData) {
     : '（未選択）'
 
   const { error } = await resend.emails.send({
-    from: `のぞき梅 <${fromEmail}>`,
+    from: `茶道宗徧流不審庵本部 <${fromEmail}>`,
     to: data.email,
-    subject: '【のぞき梅】お申込みありがとうございます',
+    subject: '【茶道宗徧流不審庵本部】お申込みありがとうございます',
     text: `
 ${data.name} 様
 
@@ -32,7 +32,7 @@ ${data.name} 様
 【ご希望商品】
 ${productList}
 
-${data.note ? `【備考】\n${data.note}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━
+${data.totalAmount ? `【合計金額】\n${data.totalAmount}\n\n` : ''}${data.note ? `【備考】\n${data.note}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━
 
 ご不明な点がございましたら、お気軽にご連絡ください。
 引き続きどうぞよろしくお願いいたします。
