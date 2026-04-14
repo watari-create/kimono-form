@@ -1,0 +1,326 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 2rem;
+}
+
+.logo svg {
+  display: block;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #2c2c2a;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #888780;
+  margin-top: 3px;
+  letter-spacing: 0.08em;
+}
+
+.section {
+  background: #ffffff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #888780;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid #d3d1c7;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  display: block;
+  font-size: 0.78rem;
+  color: #5f5e5a;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 9px 11px;
+  font-size: 0.95rem;
+  border: 0.5px solid #b4b2a9;
+  border-radius: 8px;
+  background: #f7f4ef;
+  color: #2c2c2a;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field input:focus {
+  border-color: #2c2c2a;
+  background: #fff;
+}
+
+.required {
+  color: #d85a30;
+}
+
+/* 寸法テーブル */
+.sunpoTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.sunpoTable th {
+  font-weight: 500;
+  color: #5f5e5a;
+  padding: 6px 8px;
+  text-align: center;
+  border-bottom: 0.5px solid #d3d1c7;
+  font-size: 0.78rem;
+}
+
+.sunpoTable th:first-child {
+  text-align: left;
+}
+
+.sunpoTable td {
+  padding: 4px 4px;
+}
+
+.sunpoTable td:first-child {
+  padding: 4px 8px;
+}
+
+.sunpoLabel {
+  font-size: 0.88rem;
+  color: #2c2c2a;
+  white-space: nowrap;
+}
+
+.sunpoTable td input {
+  width: 100%;
+  padding: 6px 4px;
+  font-size: 0.9rem;
+  border: 0.5px solid #b4b2a9;
+  border-radius: 6px;
+  background: #f7f4ef;
+  color: #2c2c2a;
+  text-align: center;
+  outline: none;
+}
+
+.sunpoTable td input:focus {
+  border-color: #2c2c2a;
+  background: #fff;
+}
+
+.sunpoTable td input.disabled,
+.sunpoTable td input:disabled {
+  background: #ece9e3;
+  color: #b4b2a9;
+  cursor: not-allowed;
+}
+
+.asterisk {
+  color: #888780;
+  font-size: 0.78rem;
+}
+
+.sunpoNote {
+  font-size: 0.72rem;
+  color: #888780;
+  margin-top: 8px;
+}
+
+/* 商品 */
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.productCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 8px;
+  background: #f7f4ef;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  width: 100%;
+}
+
+.productCard:hover {
+  border-color: #888780;
+}
+
+.productCard.selected {
+  border: 1.5px solid #1D9E75;
+  background: #E1F5EE;
+}
+
+.productCheck {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 0.5px solid #b4b2a9;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+}
+
+.selected .productCheck {
+  background: #1D9E75;
+  border-color: #1D9E75;
+}
+
+.selected .productCheck::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.productName {
+  font-size: 0.82rem;
+  color: #2c2c2a;
+  line-height: 1.4;
+}
+
+/* textarea */
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.92rem;
+  border: 0.5px solid #b4b2a9;
+  border-radius: 8px;
+  background: #f7f4ef;
+  color: #2c2c2a;
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+  font-family: inherit;
+}
+
+.textarea:focus {
+  border-color: #2c2c2a;
+  background: #fff;
+}
+
+/* 送信 */
+.error {
+  color: #d85a30;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  padding: 10px 14px;
+  background: #faece7;
+  border-radius: 8px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  background: #2c2c2a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  font-family: inherit;
+}
+
+.submitBtn:hover {
+  opacity: 0.85;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitNote {
+  font-size: 0.78rem;
+  color: #888780;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+/* 完了画面 */
+.thanks {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.thanksTitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 1.5rem 0 1rem;
+  letter-spacing: 0.05em;
+}
+
+.thanksText {
+  font-size: 0.95rem;
+  color: #444441;
+  line-height: 2;
+  margin-bottom: 1rem;
+}
+
+.thanksNote {
+  font-size: 0.82rem;
+  color: #888780;
+}
+
+@media (max-width: 480px) {
+  .row2 {
+    grid-template-columns: 1fr;
+  }
+  .products {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+}
