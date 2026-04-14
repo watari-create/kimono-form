@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { KimonoFormData, PRODUCTS, SUNPO_FIELDS, Sunpo } from '@/lib/types'
+import { KimonoFormData, PRODUCT_SECTIONS, SUNPO_FIELDS, Sunpo } from '@/lib/types'
 import styles from './page.module.css'
 
 const emptySunpo = (): Sunpo => ({ shaku: '', sun: '', bu: '' })
@@ -71,9 +71,9 @@ export default function Home() {
           <div className={styles.logo}><LogoSvg /></div>
           <h1 className={styles.thanksTitle}>お申込みありがとうございます</h1>
           <p className={styles.thanksText}>
-            ご登録のメールアドレスへ<br />
-            振込先をご案内するメールをお送りしました。<br />
-            ご確認のうえ、お振込みをお願いいたします。
+            ご登録のメールアドレスへご案内をお送りしました。<br />
+            本部より請求書をお送りいたしますので、<br />
+            お振込みいただけますと幸いです。
           </p>
           <p className={styles.thanksNote}>
             ご不明な点がございましたらお気軽にご連絡ください。
@@ -185,16 +185,32 @@ export default function Home() {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>ご希望の商品</h2>
-        <div className={styles.products}>
-          {PRODUCTS.map(name => (
-            <button key={name} type="button"
-              className={`${styles.productCard} ${form.products.includes(name) ? styles.selected : ''}`}
-              onClick={() => toggleProduct(name)}>
-              <span className={styles.productCheck} />
-              <span className={styles.productName}>{name}</span>
-            </button>
-          ))}
-        </div>
+        {PRODUCT_SECTIONS.map(section => (
+          <div key={section.title} className={styles.productSection}>
+            <div className={styles.productSectionTitle}>{section.title}</div>
+            {section.items.map(item => {
+              const id = `${section.title}-${item.name}`
+              const selected = form.products.includes(id)
+              return (
+                <div key={id}
+                  className={`${styles.productRow} ${selected ? styles.productRowSelected : ''}`}
+                  onClick={() => toggleProduct(id)}>
+                  <div className={styles.productRowLeft}>
+                    <span className={`${styles.checkBox} ${selected ? styles.checkBoxChecked : ''}`} />
+                    <span className={styles.productName}>{item.name}</span>
+                  </div>
+                  <span className={styles.productPrice}>
+                    {item.price || '要問合せ'}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        ))}
+        <p className={styles.productNote}>
+          ※ 価格はすべて税込。お仕立て代・新はじく加工代・のぞき梅の紋入れ代を含みます。セット価格は7%引きです。<br />
+          ※ 合繊はご自宅でお手入れいただける洗える着物です。
+        </p>
       </section>
 
       <section className={styles.section}>
@@ -213,8 +229,7 @@ export default function Home() {
       </button>
 
       <p className={styles.submitNote}>
-        送信後、振込先をメールでお知らせします。<br />
-        ご入金確認後に制作を開始いたします。
+        送信後、本部より請求書をお送りいたします。
       </p>
     </div>
   )
