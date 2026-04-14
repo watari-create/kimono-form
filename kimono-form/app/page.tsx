@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { KimonoFormData, PRODUCT_SECTIONS, SUNPO_FIELDS, Sunpo } from '@/lib/types'
 import styles from './page.module.css'
 
@@ -14,7 +14,17 @@ const initialForm = (): KimonoFormData => ({
   sodahaba: emptySunpo(), sodatsuke: emptySunpo(), maehaba: emptySunpo(),
   ushirohaba: emptySunpo(), tsumashita: emptySunpo(), kurikoshi: emptySunpo(),
   products: [],
+  totalAmount: '',
   note: '',
+})
+
+// 全商品をフラットなマップに変換
+const productMap = new Map<string, { price: string; amount: number }>()
+PRODUCT_SECTIONS.forEach(section => {
+  section.items.forEach(item => {
+    const id = `${section.title}-${item.name}`
+    productMap.set(id, { price: item.price, amount: item.amount })
+  })
 })
 
 export default function Home() {
@@ -22,18 +32,40 @@ export default function Home() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
 
+  // 合計金額を計算
+  const { total, hasUnpriced } = useMemo(() => {
+    let sum = 0
+    let unpriced = false
+    form.products.forEach(id => {
+      const p = productMap.get(id)
+      if (p) {
+        if (p.amount > 0) sum += p.amount
+        else unpriced = true
+      }
+    })
+    return { total: sum, hasUnpriced: unpriced }
+  }, [form.products])
+
+  const totalDisplay = form.products.length === 0
+    ? ''
+    : hasUnpriced && total === 0
+      ? '要問合せ'
+      : hasUnpriced
+        ? `¥${total.toLocaleString()} ＋ 要問合せ分`
+        : `¥${total.toLocaleString()}`
+
   const setField = (key: keyof KimonoFormData, value: string) =>
     setForm(f => ({ ...f, [key]: value }))
 
   const setSunpo = (key: keyof KimonoFormData, field: keyof Sunpo, value: string) =>
     setForm(f => ({ ...f, [key]: { ...(f[key] as Sunpo), [field]: value } }))
 
-  const toggleProduct = (name: string) =>
+  const toggleProduct = (id: string) =>
     setForm(f => ({
       ...f,
-      products: f.products.includes(name)
-        ? f.products.filter(p => p !== name)
-        : [...f.products, name],
+      products: f.products.includes(id)
+        ? f.products.filter(p => p !== id)
+        : [...f.products, id],
     }))
 
   const handleSubmit = async () => {
@@ -51,7 +83,7 @@ export default function Home() {
       const res = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, totalAmount: totalDisplay }),
       })
       if (!res.ok) {
         const json = await res.json()
@@ -207,6 +239,14 @@ export default function Home() {
             })}
           </div>
         ))}
+
+        {totalDisplay && (
+          <div className={styles.totalBox}>
+            <span className={styles.totalLabel}>合計金額（税込）</span>
+            <span className={styles.totalAmount}>{totalDisplay}</span>
+          </div>
+        )}
+
         <p className={styles.productNote}>
           ※ 価格はすべて税込。お仕立て代・新はじく加工代・のぞき梅の紋入れ代を含みます。セット価格は7%引きです。<br />
           ※ 合繊はご自宅でお手入れいただける洗える着物です。
