@@ -29,8 +29,7 @@ export async function sendSlackNotification(data: KimonoFormData) {
       {
         type: 'section',
         fields: [
-          { type: 'mrkdwn', text: `*身長*\n${data.height ? data.height + ' cm' : '―'}` },
-          { type: 'mrkdwn', text: `*ヒップ*\n${data.hip ? data.hip + ' cm' : '―'}` },
+          { type: 'mrkdwn', text: `*合計金額*\n${data.totalAmount || '要問合せ含む'}` },
         ],
       },
       ...(data.note ? [{
