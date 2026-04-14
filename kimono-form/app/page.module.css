@@ -324,3 +324,91 @@
     font-size: 1.1rem;
   }
 }
+
+.productSection {
+  margin-bottom: 16px;
+}
+
+.productSectionTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-secondary, #5f5e5a);
+  background: #f0ede8;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  letter-spacing: 0.03em;
+}
+
+.productRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 6px;
+  border-bottom: 0.5px solid #e8e5e0;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.productRow:last-child {
+  border-bottom: none;
+}
+
+.productRow:hover {
+  background: #f7f4ef;
+}
+
+.productRowSelected {
+  background: #E1F5EE;
+}
+
+.productRowLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkBox {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 0.5px solid #b4b2a9;
+  flex-shrink: 0;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+}
+
+.checkBoxChecked {
+  background: #2c2c2a;
+  border-color: #2c2c2a;
+}
+
+.checkBoxChecked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.productPrice {
+  font-size: 0.85rem;
+  color: #5f5e5a;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.productNote {
+  font-size: 0.72rem;
+  color: #888780;
+  margin-top: 12px;
+  line-height: 1.8;
+  padding-top: 10px;
+  border-top: 0.5px solid #e8e5e0;
+}
