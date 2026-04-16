@@ -41,33 +41,43 @@ export type ProductSection = {
 
 export const PRODUCT_SECTIONS: ProductSection[] = [
   {
-    title: '夏物（絽）蝶の舞　※仕立て・加工込',
+    title: '反物のみ　単品',
     items: [
-      { name: '着物　正絹', price: '¥440,000', amount: 440000 },
-      { name: '着物　合繊', price: '¥165,000', amount: 165000 },
-      { name: '夏帯　萩と月', price: '¥198,000', amount: 198000 },
-      { name: 'セット（正絹）', price: '¥603,000', amount: 603000 },
-      { name: 'セット（合繊）', price: '¥338,000', amount: 338000 },
+      { name: '袷きもの　のぞき梅（正絹）', price: '¥335,000', amount: 335000 },
+      { name: '袷きもの　のぞき梅（合繊）', price: '¥116,000', amount: 116000 },
+      { name: '名古屋帯　向かい蝶', price: '¥245,000', amount: 245000 },
+      { name: '夏きもの　蝶の舞（正絹）', price: '¥387,000', amount: 387000 },
+      { name: '夏きもの　蝶の舞（合繊）', price: '¥139,000', amount: 139000 },
+      { name: '夏帯　萩と月', price: '¥193,000', amount: 193000 },
     ],
   },
   {
-    title: '冬物（袷）のぞき梅　※仕立て・加工込',
+    title: '反物のみ　セット（7%引き）',
     items: [
-      { name: '着物　正絹', price: '¥396,000', amount: 396000 },
-      { name: '着物　合繊', price: '¥143,000', amount: 143000 },
-      { name: '名古屋帯　むかい蝶（ピンク）', price: '¥242,000', amount: 242000 },
-      { name: '名古屋帯　むかい蝶（直門用ブルー）', price: '¥242,000', amount: 242000 },
-      { name: 'セット（正絹）', price: '¥593,000', amount: 593000 },
-      { name: 'セット（合繊）', price: '¥358,000', amount: 358000 },
+      { name: 'のぞき梅（正絹）＋向かい蝶', price: '¥539,000', amount: 539000 },
+      { name: 'のぞき梅（合繊）＋向かい蝶', price: '¥335,000', amount: 335000 },
+      { name: '蝶の舞（正絹）＋萩と月', price: '¥539,000', amount: 539000 },
+      { name: '蝶の舞（合繊）＋萩と月', price: '¥308,000', amount: 308000 },
     ],
   },
   {
-    title: '反物のみ（仕立て・加工なし）',
+    title: '仕立て込み　単品　※実売推奨',
     items: [
-      { name: '蝶の舞（夏きもの）反物　正絹', price: '', amount: 0 },
-      { name: '蝶の舞（夏きもの）反物　合繊', price: '', amount: 0 },
-      { name: 'のぞき梅（袷きもの）反物　正絹', price: '', amount: 0 },
-      { name: 'のぞき梅（袷きもの）反物　合繊', price: '', amount: 0 },
+      { name: '袷きもの　のぞき梅（正絹）', price: '¥378,000', amount: 378000 },
+      { name: '袷きもの　のぞき梅（合繊）', price: '¥139,000', amount: 139000 },
+      { name: '名古屋帯　向かい蝶', price: '¥258,000', amount: 258000 },
+      { name: '夏きもの　蝶の舞（正絹）', price: '¥428,000', amount: 428000 },
+      { name: '夏きもの　蝶の舞（合繊）', price: '¥162,000', amount: 162000 },
+      { name: '夏帯　萩と月', price: '¥206,000', amount: 206000 },
+    ],
+  },
+  {
+    title: '仕立て込み　セット（7%引き）　※実売推奨',
+    items: [
+      { name: 'のぞき梅（正絹）＋向かい蝶', price: '¥591,000', amount: 591000 },
+      { name: 'のぞき梅（合繊）＋向かい蝶', price: '¥369,000', amount: 369000 },
+      { name: '蝶の舞（正絹）＋萩と月', price: '¥589,000', amount: 589000 },
+      { name: '蝶の舞（合繊）＋萩と月', price: '¥342,000', amount: 342000 },
     ],
   },
 ]
