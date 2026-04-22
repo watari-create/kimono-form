@@ -10,7 +10,7 @@ const HEADERS = [
   '住所', '支部名', '会員番号',
   '身長(cm)', 'ヒップ(cm)',
   '身丈(背)', '袖丈', '裄', '袖巾', '袖付', '前巾', '後巾', '褄下', 'くりこし',
-  '商品', '備考',
+  '商品', '合計金額', '備考',
   'ステータス', '入金確認日', '発送日', '備考(管理用)'
 ]
 
@@ -51,6 +51,7 @@ function doPost(e) {
       data['褄下'] || '',
       data['くりこし'] || '',
       data['商品'] || '',
+      data['合計金額'] || '',
       data['備考'] || '',
       '未入金',  // ステータス初期値
       '',        // 入金確認日
@@ -108,11 +109,12 @@ function setupSheet(sheet) {
   // 寸法列
   for (let i = 11; i <= 19; i++) sheet.setColumnWidth(i, 80)
   sheet.setColumnWidth(20, 200)  // 商品
-  sheet.setColumnWidth(21, 150)  // 備考
-  sheet.setColumnWidth(22, 90)   // ステータス
-  sheet.setColumnWidth(23, 100)  // 入金確認日
-  sheet.setColumnWidth(24, 100)  // 発送日
-  sheet.setColumnWidth(25, 150)  // 備考(管理用)
+  sheet.setColumnWidth(21, 120)  // 合計金額
+  sheet.setColumnWidth(22, 150)  // 備考
+  sheet.setColumnWidth(23, 90)   // ステータス
+  sheet.setColumnWidth(24, 100)  // 入金確認日
+  sheet.setColumnWidth(25, 100)  // 発送日
+  sheet.setColumnWidth(26, 150)  // 備考(管理用)
 
   // ヘッダーを固定
   sheet.setFrozenRows(1)
