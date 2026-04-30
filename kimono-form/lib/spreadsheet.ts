@@ -31,7 +31,7 @@ export async function appendToSpreadsheet(data: KimonoFormData) {
     褄下: sunpoStr(data.tsumashita),
     くりこし: sunpoStr(data.kurikoshi),
     商品: productList,
-    合計金額: data.totalAmount || '―',
+    金額: data.totalAmount || '―',
     備考: data.note || '―',
     ステータス: '未入金',
   }
