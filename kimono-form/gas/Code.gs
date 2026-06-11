@@ -56,15 +56,25 @@ function doPost(e) {
     ]
 
     const lastRow = sheet.getLastRow()
+    const targetRow = lastRow + 1
+
     sheet.appendRow(newRow)
 
+    // 寸法列（11〜19列）を文字列として強制フォーマット
+    const sunpoCols = [11, 12, 13, 14, 15, 16, 17, 18, 19]
+    sunpoCols.forEach(col => {
+      const cell = sheet.getRange(targetRow, col)
+      cell.setNumberFormat('@STRING@')
+      const val = newRow[col - 1]
+      if (val) cell.setValue("'" + val)  // シングルクォートで文字列強制
+    })
+
     const statusCol = HEADERS.indexOf('ステータス') + 1
-    const statusCell = sheet.getRange(lastRow + 1, statusCol)
+    const statusCell = sheet.getRange(targetRow, statusCol)
     const rule = SpreadsheetApp.newDataValidation()
       .requireValueInList(STATUS_OPTIONS, true)
       .build()
     statusCell.setDataValidation(rule)
-
     colorByStatus(statusCell, '未入金')
 
     return ContentService
@@ -87,24 +97,27 @@ function setupSheet(sheet) {
   headerRange.setFontWeight('bold')
   headerRange.setFontSize(10)
 
-  sheet.setColumnWidth(1, 140)   // 受付日時
-  sheet.setColumnWidth(2, 100)   // お名前
-  sheet.setColumnWidth(3, 120)   // フリガナ
-  sheet.setColumnWidth(4, 120)   // 電話番号
-  sheet.setColumnWidth(5, 180)   // メール
-  sheet.setColumnWidth(6, 200)   // 住所
-  sheet.setColumnWidth(7, 90)    // 支部名
-  sheet.setColumnWidth(8, 80)    // 会員番号
-  sheet.setColumnWidth(9, 70)    // 身長
-  sheet.setColumnWidth(10, 70)   // ヒップ
+  // 寸法列を文字列フォーマットに設定
+  sheet.getRange(2, 11, 1000, 9).setNumberFormat('@STRING@')
+
+  sheet.setColumnWidth(1, 140)
+  sheet.setColumnWidth(2, 100)
+  sheet.setColumnWidth(3, 120)
+  sheet.setColumnWidth(4, 120)
+  sheet.setColumnWidth(5, 180)
+  sheet.setColumnWidth(6, 200)
+  sheet.setColumnWidth(7, 90)
+  sheet.setColumnWidth(8, 80)
+  sheet.setColumnWidth(9, 70)
+  sheet.setColumnWidth(10, 70)
   for (let i = 11; i <= 19; i++) sheet.setColumnWidth(i, 80)
-  sheet.setColumnWidth(20, 200)  // 商品
-  sheet.setColumnWidth(21, 120)  // 金額
-  sheet.setColumnWidth(22, 150)  // 備考
-  sheet.setColumnWidth(23, 90)   // ステータス
-  sheet.setColumnWidth(24, 100)  // 入金確認日
-  sheet.setColumnWidth(25, 100)  // 発送日
-  sheet.setColumnWidth(26, 150)  // 備考(管理用)
+  sheet.setColumnWidth(20, 200)
+  sheet.setColumnWidth(21, 120)
+  sheet.setColumnWidth(22, 150)
+  sheet.setColumnWidth(23, 90)
+  sheet.setColumnWidth(24, 100)
+  sheet.setColumnWidth(25, 100)
+  sheet.setColumnWidth(26, 150)
 
   sheet.setFrozenRows(1)
 }
