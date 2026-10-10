@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sendSlackNotification } from '@/lib/slack'
 import { sendConfirmationEmail } from '@/lib/email'
 import { appendToSpreadsheet } from '@/lib/spreadsheet'
-import { KimonoFormData } from '@/lib/types'
+import { sendMenSlack, sendMenEmail, appendMenToSpreadsheet } from '@/lib/men'
+import { KimonoFormData, MenFormData } from '@/lib/types'
 
 export async function POST(req: NextRequest) {
   try {
-    const data: KimonoFormData = await req.json()
+    const data = await req.json()
 
     if (!data.name || !data.email || !data.tel) {
       return NextResponse.json(
@@ -15,11 +16,21 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    await Promise.all([
-      sendSlackNotification(data),
-      sendConfirmationEmail(data),
-      appendToSpreadsheet(data),
-    ])
+    if (data.formType === 'men') {
+      const men = data as MenFormData
+      await Promise.all([
+        sendMenSlack(men),
+        sendMenEmail(men),
+        appendMenToSpreadsheet(men),
+      ])
+    } else {
+      const women = data as KimonoFormData
+      await Promise.all([
+        sendSlackNotification(women),
+        sendConfirmationEmail(women),
+        appendToSpreadsheet(women),
+      ])
+    }
 
     return NextResponse.json({ success: true })
   } catch (err) {

@@ -99,3 +99,69 @@ export const SUNPO_FIELDS: { key: keyof Pick<KimonoFormData, 'shintake'|'sodake'
   { key: 'tsumashita',  label: '褄下' },
   { key: 'kurikoshi',   label: 'くりこし', shakuOnly: true },
 ]
+
+// ===================================================
+// 男性用 紋付袴
+// ===================================================
+
+export type MenRequestType = 'order' | 'visit'
+
+export type MenFormData = {
+  formType: 'men'
+  requestType: MenRequestType
+  // 共通
+  name: string
+  furigana: string
+  tel: string
+  email: string
+  address: string
+  note: string
+  // 来店予約
+  visitDate: string
+  visitTimeFrom: string
+  visitTimeTo: string
+  consult: string[]
+  consultOther: string
+  referral: string
+  wearDate: string
+  // ご注文（来店なし）
+  plan: string
+  height: string
+  hip: string
+  waist: string
+  shintake: Sunpo
+  yuki: Sunpo
+  mon: string
+  monOther: string
+  deliveryDate: string
+  handover: string
+  contactMethod: string
+}
+
+export type MenPlan = {
+  id: string
+  label: string
+  detail: string
+  price: string
+  amount: number
+}
+
+export const MEN_PLANS: MenPlan[] = [
+  { id: 'synthetic', label: '① すべて合繊', detail: '紋付着物（合繊）・袴（合繊）・帯（合繊）', price: '¥200,750', amount: 200750 },
+  { id: 'mixed',     label: '② 正絹 着物＋合繊 袴・帯', detail: '紋付着物（正絹）・袴（合繊）・帯（合繊）', price: '¥435,820', amount: 435820 },
+  { id: 'silk',      label: '③ すべて正絹', detail: '紋付着物（正絹）・袴（正絹）・帯（正絹）', price: '¥567,270', amount: 567270 },
+]
+
+export const MEN_CONSULT_OPTIONS = ['紋付袴のご注文（誂え）', '採寸のみ', 'その他']
+export const MEN_REFERRAL_OPTIONS = ['侘び数寄道', '宗徧流']
+
+export const MEN_STORE = {
+  name: 'THE YARD 外苑前店',
+  address: '〒150-0001 東京都渋谷区神宮前3-36-26',
+  tel: '03-5843-1063',
+  fax: '03-5843-1062',
+  email: 'web.theyard.361@gmail.com',
+  company: '株式会社やまと',
+  staff: '店長 佐久間 賢',
+  map: 'https://maps.app.goo.gl/RCXTzhnSUNWBL2669',
+}
