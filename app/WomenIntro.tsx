@@ -6,18 +6,15 @@ import styles from './intro.module.css'
 type Photo = { src: string; caption: string }
 
 const WINTER: Photo[] = [
-  { src: '/images/winter-1.jpg', caption: '袷きもの のぞき梅 × 名古屋帯 むかい蝶' },
-  { src: '/images/winter-2.jpg', caption: 'むかい蝶 後姿' },
-  { src: '/images/winter-3.jpg', caption: 'むかい蝶（前）' },
-  { src: '/images/winter-4.jpg', caption: 'むかい蝶（お太鼓）' },
-  { src: '/images/winter-5.jpg', caption: 'むかい蝶 刺繍' },
+  { src: '/images/winter-full.jpg', caption: '袷きもの のぞき梅 × 名古屋帯 むかい蝶' },
+  { src: '/images/winter-obi-front.jpg', caption: '名古屋帯 むかい蝶（前）' },
+  { src: '/images/winter-obi-back.jpg', caption: '名古屋帯 むかい蝶（後）' },
 ]
 
 const SUMMER: Photo[] = [
-  { src: '/images/summer-1.jpg', caption: '夏きもの 蝶の舞 × 夏帯 萩と月' },
-  { src: '/images/summer-2.jpg', caption: '後姿' },
-  { src: '/images/summer-3.jpg', caption: '萩と月（お太鼓）' },
-  { src: '/images/summer-4.jpg', caption: '蝶の舞 地紋' },
+  { src: '/images/summer-full.jpg', caption: '夏きもの 蝶の舞 × 夏帯 萩と月' },
+  { src: '/images/summer-obi-front.jpg', caption: '夏帯 萩と月（前）' },
+  { src: '/images/summer-obi-back.jpg', caption: '夏帯 萩と月（後）' },
 ]
 
 export default function WomenIntro() {
@@ -122,21 +119,18 @@ export default function WomenIntro() {
 }
 
 function Gallery({ photos, onZoom }: { photos: Photo[]; onZoom: (p: Photo) => void }) {
-  const [idx, setIdx] = useState(0)
-  const main = photos[idx]
+  const [main, ...subs] = photos
   return (
     <div className={styles.gallery}>
       <figure className={styles.main} onClick={() => onZoom(main)}>
         <img src={main.src} alt={main.caption} />
-        <figcaption>{main.caption}</figcaption>
       </figure>
-      <div className={styles.thumbs}>
-        {photos.map((p, i) => (
-          <button key={p.src} type="button"
-            className={`${styles.thumb} ${i === idx ? styles.thumbActive : ''}`}
-            onClick={() => setIdx(i)} aria-label={p.caption}>
-            <img src={p.src.replace('.jpg', '-thumb.jpg')} alt="" />
-          </button>
+      <div className={styles.subs}>
+        {subs.map(p => (
+          <figure key={p.src} onClick={() => onZoom(p)}>
+            <img src={p.src} alt={p.caption} />
+            <figcaption>{p.caption}</figcaption>
+          </figure>
         ))}
       </div>
     </div>
