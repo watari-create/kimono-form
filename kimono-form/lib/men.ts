@@ -102,7 +102,6 @@ export async function sendMenEmail(d: MenFormData) {
 ${d.name} 様
 
 この度は男性用 紋付袴の${isVisit ? 'ご来店予約' : 'ご注文'}をいただき、誠にありがとうございます。
-3営業日以内に、${MEN_STORE.name}よりご連絡いたします。
 
 ━━━━━━━━━━━━━━━━━━━━
 【${typeLabel(d)}】受付内容

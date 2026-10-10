@@ -6,15 +6,18 @@ import styles from './intro.module.css'
 type Photo = { src: string; caption: string }
 
 const WINTER: Photo[] = [
-  { src: '/images/winter-full.jpg', caption: '袷きもの のぞき梅 × 名古屋帯 むかい蝶' },
-  { src: '/images/winter-obi-front.jpg', caption: '名古屋帯 むかい蝶（前）' },
-  { src: '/images/winter-obi-back.jpg', caption: '名古屋帯 むかい蝶（後）' },
+  { src: '/images/winter-1.jpg', caption: '袷きもの のぞき梅 × 名古屋帯 むかい蝶' },
+  { src: '/images/winter-2.jpg', caption: 'むかい蝶 後姿' },
+  { src: '/images/winter-3.jpg', caption: 'むかい蝶（前）' },
+  { src: '/images/winter-4.jpg', caption: 'むかい蝶（お太鼓）' },
+  { src: '/images/winter-5.jpg', caption: 'むかい蝶 刺繍' },
 ]
 
 const SUMMER: Photo[] = [
-  { src: '/images/summer-full.jpg', caption: '夏きもの 蝶の舞 × 夏帯 萩と月' },
-  { src: '/images/summer-obi-front.jpg', caption: '夏帯 萩と月（前）' },
-  { src: '/images/summer-obi-back.jpg', caption: '夏帯 萩と月（後）' },
+  { src: '/images/summer-1.jpg', caption: '夏きもの 蝶の舞 × 夏帯 萩と月' },
+  { src: '/images/summer-2.jpg', caption: '後姿' },
+  { src: '/images/summer-3.jpg', caption: '萩と月（お太鼓）' },
+  { src: '/images/summer-4.jpg', caption: '蝶の舞 地紋' },
 ]
 
 export default function WomenIntro() {
@@ -100,12 +103,12 @@ export default function WomenIntro() {
       <section className={styles.product}>
         <h3 className={styles.productTitle}>ご注文から納品までの流れ</h3>
         <ol className={styles.flow}>
-          <li><b>お申し込み</b>このフォーム、またはFAX（0467-25-1550）にてお申し込みください。<span className={styles.deadline}>締切：12月11日（金）</span></li>
+          <li><b>お申し込み</b>このフォーム、またはFAX（0467-25-1550）にてお申し込みください。</li>
           <li><b>請求書の送付</b>本部より請求書をお送りいたします。お振込にてお支払いください。</li>
           <li><b>お仕立て・加工</b>お申し込み内容をもとに、仕立て・新はじく加工・紋入れを行います。</li>
           <li><b>納品・発送</b>きものやまとよりご指定のご住所へ発送いたします。送料別途。</li>
         </ol>
-        <p className={styles.small}>※ 締切日より約3ヶ月後の納品となります。お急ぎの場合は本部にご相談ください。<br />※ お申込み後のキャンセルは承っておりません。あらかじめご了承ください。</p>
+        <p className={styles.small}>※ 納品までには約3ヶ月かかります。お急ぎの場合は本部にご相談ください。<br />※ お申込み後のキャンセルは承っておりません。あらかじめご了承ください。</p>
       </section>
 
       {zoom && (
@@ -119,18 +122,21 @@ export default function WomenIntro() {
 }
 
 function Gallery({ photos, onZoom }: { photos: Photo[]; onZoom: (p: Photo) => void }) {
-  const [main, ...subs] = photos
+  const [idx, setIdx] = useState(0)
+  const main = photos[idx]
   return (
     <div className={styles.gallery}>
       <figure className={styles.main} onClick={() => onZoom(main)}>
         <img src={main.src} alt={main.caption} />
+        <figcaption>{main.caption}</figcaption>
       </figure>
-      <div className={styles.subs}>
-        {subs.map(p => (
-          <figure key={p.src} onClick={() => onZoom(p)}>
-            <img src={p.src} alt={p.caption} />
-            <figcaption>{p.caption}</figcaption>
-          </figure>
+      <div className={styles.thumbs}>
+        {photos.map((p, i) => (
+          <button key={p.src} type="button"
+            className={`${styles.thumb} ${i === idx ? styles.thumbActive : ''}`}
+            onClick={() => setIdx(i)} aria-label={p.caption}>
+            <img src={p.src.replace('.jpg', '-thumb.jpg')} alt="" />
+          </button>
         ))}
       </div>
     </div>

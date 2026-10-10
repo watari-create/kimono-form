@@ -49,7 +49,7 @@ export default function MenIntro() {
 
       <section className={intro.product}>
         <h3 className={intro.productTitle}>お申込み方法</h3>
-        <p className={intro.body}>次の二通りからお選びいただけます。いずれも3営業日以内に店舗よりご連絡いたします。</p>
+        <p className={intro.body}>次の二通りからお選びいただけます。</p>
         <ul className={intro.checks}>
           <li><b>ご注文（来店なし）</b>　組み合わせとご寸法をご記入のうえ、そのままご注文いただけます。ご不明な箇所は空欄でも結構です。</li>
           <li><b>来店予約</b>　{MEN_STORE.name}にて、ご相談・採寸のうえご注文いただけます。</li>

@@ -85,8 +85,7 @@ export default function MenForm() {
           {isVisit ? 'ご来店予約を承りました' : 'ご注文を承りました'}
         </h1>
         <p className={styles.thanksText}>
-          ご登録のメールアドレスへ受付内容をお送りしました。<br />
-          3営業日以内に、{MEN_STORE.name}よりご連絡いたします。
+          ご登録のメールアドレスへ受付内容をお送りしました。
         </p>
         <p className={styles.thanksNote}>ご不明な点がございましたらお気軽にご連絡ください。</p>
       </div>
@@ -290,9 +289,6 @@ export default function MenForm() {
       <button className={styles.submitBtn} onClick={handleSubmit} disabled={status === 'loading'}>
         {status === 'loading' ? '送信中...' : isVisit ? '来店予約を送信する' : '注文を送信する'}
       </button>
-      <p className={styles.submitNote}>
-        送信後、3営業日以内に{MEN_STORE.name}よりご連絡いたします。
-      </p>
     </>
   )
 }

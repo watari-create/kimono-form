@@ -98,9 +98,6 @@
 
 /* ギャラリー */
 .gallery {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 10px;
   margin-bottom: 1rem;
 }
 
@@ -109,30 +106,51 @@
   cursor: zoom-in;
 }
 
-.gallery img {
+.main img {
   display: block;
   width: 100%;
+  height: 460px;
+  object-fit: contain;
+  background: #f3f1ec;
   border-radius: 8px;
+}
+
+.main figcaption {
+  font-size: 0.74rem;
+  color: #5f5e5a;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.thumb {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.7;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
-.main img {
-  height: 100%;
-  min-height: 240px;
-  max-height: 340px;
+.thumbActive {
+  border-color: #2c2c2a;
+  opacity: 1;
 }
 
-.subs {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px;
-}
-
-.subs img {
-  aspect-ratio: 4 / 3;
-}
-
-.subs figcaption,
 .fabric figcaption {
   font-size: 0.7rem;
   color: #5f5e5a;
@@ -293,15 +311,7 @@
   .product {
     padding: 1.25rem 1rem;
   }
-  .gallery {
-    grid-template-columns: 1fr;
-  }
   .main img {
-    max-height: 420px;
-    object-position: center 20%;
-  }
-  .subs {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    height: 380px;
   }
 }
